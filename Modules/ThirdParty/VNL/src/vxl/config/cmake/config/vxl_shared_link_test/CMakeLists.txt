@@ -5,7 +5,7 @@ if(POLICY CMP0025)
   cmake_policy(SET CMP0025 NEW)
 endif()
 if(POLICY CMP0042)
-  cmake_policy(SET CMP0042 NEW)
+  cmake_policy(SET CMP0042 OLD)
 endif()
 project(vxl_pic_compatible)
 
