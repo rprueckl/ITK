@@ -120,6 +120,15 @@ CHECK_FUNCTION_EXISTS(strerror HAVE_STRERROR)
 CHECK_FUNCTION_EXISTS(sysconf  HAVE_SYSCONF)
 CHECK_FUNCTION_EXISTS(system   HAVE_SYSTEM)
 
+# Convenient macro allowing to update CMAKE_REQUIRED_DEFINITIONS
+set(CMAKE_REQUIRED_DEFINITIONS )
+macro(set_required_def var value)
+  set(${var} ${value})
+  list(APPEND CMAKE_REQUIRED_DEFINITIONS "-D${var}=${value}")
+endmacro()
+
+set_required_def(_GNU_SOURCE 1)       # Define on Linux to activate all library features
+
 if(NOT MSVC)
   set(CMAKE_REQUIRED_LIBRARIES m)
 endif()
