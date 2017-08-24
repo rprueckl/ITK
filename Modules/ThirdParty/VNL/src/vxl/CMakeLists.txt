@@ -29,7 +29,7 @@ if( POLICY CMP0033 )
 endif()
 # Use @rpath on OS X
 if( POLICY CMP0042 )
-  cmake_policy(SET CMP0042 OLD)
+  cmake_policy(SET CMP0042 NEW)
 endif()
 
 # Honor visibility properties for static libraries
