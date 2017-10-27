@@ -38,13 +38,20 @@ git fetch upstream
 2. Create a new branch following the convention
 
 ```
-XYZ=X.Y.Z # Read values of ITK_VERSION_* variables from https://github.com/InsightSoftwareConsortium/ITK/blob/master/CMakeLists.txt
+# Extract version from https://github.com/InsightSoftwareConsortium/ITK/blob/master/CMakeLists.txt
+XYZ=$(cat CMakeLists.txt | grep ^set\(ITK_VERSION | sed -re 's/^set\(ITK_VERSION_[A-Z]+ \"(.+)\"\)/\1/' | perl -pe 'chomp if eof' | tr '\n' '.')
+echo "XYZ [${XYZ}]"
 
 DATE=$(git show -s --format=%ci upstream/master | cut -d" " -f1)
+echo "DATE [${DATE}]"
 
 SHA=$(git show -s --format=%h upstream/master)
+echo "SHA [${SHA}]"
 
-git checkout -b slicer-v${XYZ}-${DATE}-${SHA} ${SHA}
+BRANCH=slicer-v${XYZ}-${DATE}-${SHA}
+echo "BRANCH [${BRANCH}]"
+
+git checkout -b ${BRANCH}  ${SHA}
 ```
 
 3. Cherry-pick the Slicer specific commits from last branch. Resolve conflict as needed.
