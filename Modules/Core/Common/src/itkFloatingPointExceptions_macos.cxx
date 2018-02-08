@@ -21,7 +21,12 @@
 // cxx files.
 //
 
-#if defined(__ppc__) || defined(__ppc64__) // PPC
+#if defined(ITK_HAS_FERAISEEXCEPT)
+
+#define feenableexcept feraiseexcept
+#define fedisableexcept feclearexcept
+
+#elif defined(__ppc__) || defined(__ppc64__) // PPC
 
 // Implementation for macOS PPC
 

@@ -72,7 +72,7 @@ SetEnabled(bool val)
 
 } // end of itk namespace
 
-#if !defined(_WIN32) && defined(ITK_HAVE_FENV_H) && defined(ITK_HAS_FEENABLEEXCEPT)
+#if !defined(_WIN32) && defined(ITK_HAVE_FENV_H) && (defined(ITK_HAS_FEENABLEEXCEPT) || defined(ITK_HAS_FERAISEEXCEPT))
 
 #include "itkFloatingPointExceptions_unix.cxx"
 

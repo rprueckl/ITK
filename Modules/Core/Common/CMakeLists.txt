@@ -104,6 +104,11 @@ try_compile(ITK_HAS_FEENABLEEXCEPT
   ${CMAKE_CURRENT_SOURCE_DIR}/CMake/itkCheckHasFeenableexcept.cxx
   )
 
+try_compile(ITK_HAS_FERAISEEXCEPT
+  ${ITK_BINARY_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/CMake/itkCheckHasFeraiseexcept.cxx
+  )
+
 #-----------------------------------------------------------------------------
 # Make default visibility as an option for generated export header
 
