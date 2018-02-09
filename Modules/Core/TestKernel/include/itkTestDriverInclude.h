@@ -44,6 +44,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "itkFloatingPointExceptions.h"
 #include "itkMultiThreader.h"
 #include "itkImage.h"
 #include "itkImageFileReader.h"
@@ -55,9 +56,7 @@
 #include "itkTestingHashImageFilter.h"
 #include "itksys/SystemTools.hxx"
 #include "itkIntTypes.h"
-#if defined(LINUX) && !defined(__MINGW32__) && defined(ITK_HAS_FEENABLEEXCEPT)
-#include "itkFloatingPointExceptions.h"
-#endif
+
 #include "vnl/vnl_sample.h"
 
 #define ITK_TEST_DIMENSION_MAX 6
@@ -209,9 +208,10 @@ static char my_to_lower(const char c)
 
 int ProcessArguments(int *ac, ArgumentStringType *av, ProcessedOutputType * processedOutput = ITK_NULLPTR )
 {
-#if defined(LINUX) && !defined(__MINGW32__) && defined(ITK_HAS_FEENABLEEXCEPT)
-  itk::FloatingPointExceptions::Enable();
-#endif
+  if ( itk::FloatingPointExceptions::HasFloatingPointExceptionsSupport() )
+    {
+    itk::FloatingPointExceptions::Enable();
+    }
   regressionTestParameters.intensityTolerance  = 2.0;
   regressionTestParameters.numberOfPixelsTolerance = 0;
   regressionTestParameters.radiusTolerance = 0;

@@ -192,6 +192,10 @@ if(ITK_BUILD_SHARED_LIBS AND ITK_DYNAMIC_LOADING)
   list(APPEND ITKCommon2Tests itkDownCastTest.cxx)
 endif()
 
+# Notes:
+# (1) Tests are arbitrarly split into two drivers to avoid memory issues.
+# (2) itkFloatingPointExceptionsExtern.cxx is associated with the first driver.
+#     only because it is indeed to build itkFloatingPointExceptionsTest.
 CreateTestDriver(ITKCommon1 "${ITKCommon-Test_LIBRARIES}" "${ITKCommon1Tests}" itkFloatingPointExceptionsExtern.cxx)
 CreateTestDriver(ITKCommon2 "${ITKCommon-Test_LIBRARIES}" "${ITKCommon2Tests}")
 
@@ -479,7 +483,7 @@ itk_add_test(NAME itkCompensatedSummationTest2 COMMAND ITKCommon2TestDriver itkC
 # this test depends on being able to raise C++ exceptions from
 # the signal handler. This is apparently not something that
 # works properly
-if("${CMAKE_SYSTEM_NAME}" MATCHES "Linux" AND ITK_HAS_FEENABLEEXCEPT)
+if("${CMAKE_SYSTEM_NAME}" MATCHES "Darwin|Linux")
   itk_add_test(NAME itkFloatingPointExceptionsTest1 COMMAND ITKCommon1TestDriver
     itkFloatingPointExceptionsTest DivByZero)
   itk_add_test(NAME itkFloatingPointExceptionsTest2 COMMAND ITKCommon1TestDriver

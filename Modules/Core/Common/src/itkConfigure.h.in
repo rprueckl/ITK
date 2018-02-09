@@ -110,6 +110,16 @@
 #cmakedefine ITK_HAS_MALLINFO
 // defined if feenableexcept is available
 #cmakedefine ITK_HAS_FEENABLEEXCEPT
+// defined if fegetenv is available
+#cmakedefine ITK_HAS_FEGETENV
+// defined if fesetenv is available
+#cmakedefine ITK_HAS_FESETENV
+// defined if fenv_t struct as __control member
+#cmakedefine ITK_HAS_STRUCT_FENV_T_CONTROL
+// defined if fenv_t struct as __control_word member
+#cmakedefine ITK_HAS_STRUCT_FENV_T_CONTROL_WORD
+// defined if fenv_t struct as __cw member
+#cmakedefine ITK_HAS_STRUCT_FENV_T_CW
 
 // defined if the spacing/origin/direction parameters in
 // itk::ImageBase are float instead of double
