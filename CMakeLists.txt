@@ -8,6 +8,7 @@ foreach(p
     CMP0056 # CMake 3.2
     CMP0058 # CMake 3.3
     CMP0063 # CMake 3.3.2
+    CMP0067 # CMake 3.8
     )
   if(POLICY ${p})
     cmake_policy(SET ${p} NEW)
